@@ -1,6 +1,6 @@
 const express = require('express');
 
-const projectsRoutes = require('./projects/projects.routes');
+const centersRoutes = require('./centers/centers.routes');
 const tasksRoutes = require('./tasks/tasks.routes');
 const authRoutes = require('./auth/auth.routes');
 
@@ -12,7 +12,7 @@ router.use('/auth', authRoutes); // precisa ser publico (não pode receber token
 
 router.use(protectedRoutesMiddleware.protect); // middleware de rota protegida!!! Tudo que estiver abaixo dela está protegido
 
-router.use('/projects', projectsRoutes); // precisa ser privado
+router.use('/centers', centersRoutes); // precisa ser privado
 router.use('/tasks', tasksRoutes); // precisa ser privado
 
 module.exports = router;

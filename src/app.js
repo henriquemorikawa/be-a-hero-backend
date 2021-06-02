@@ -11,6 +11,7 @@ app.use(cors({
   origin: process.env.FRONT_END_URL, // habilitando somente o nosso projeto de FRONT a consumir nossa API
   methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
 }));
+
 app.use(express.json());
 
 app.use('/api', apiRoutes);
