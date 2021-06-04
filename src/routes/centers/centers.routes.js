@@ -4,10 +4,10 @@ const centersController = require('../../controller/centers.controller');
 
 const router = express();
 
-router.get('/', centersController.getMany); // obter lista de todos os projetos
-router.get('/:id', centersController.getOne); // obter detalhe de um projeto a partir do seu ID
-router.post('/', centersController.createOne); // criar um novo projeto
-router.put('/:id', centersController.updateOne); // atualizar um projeto a partir do seu ID
-router.delete('/:id', centersController.deleteOne); // deletar um projeto específico
+router.get('/centers', centersController.getMany); 
+router.get('/centers:id', centersController.getOne); 
+router.post('/centers', centersController.createOne); 
+router.put('/centers:id', centersController.updateOne); 
+router.delete('/centers:id', centersController.deleteOne); 
 
 module.exports = router;
