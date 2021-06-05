@@ -7,7 +7,7 @@ class BenefitsController{
 
     getMany = async (req, res, next) => {
         try {
-          const benefit = await this.Benefits.find({ user: req.user.id });
+          const benefit = await this.Benefits.find(); //{ user: req.user.id }
     
           res.status(200).json(benefit);
         } catch (error) {
@@ -34,7 +34,7 @@ class BenefitsController{
     
       createOne = async (req, res, next) => {
         try {
-          const newBenefit = new this.Benefits({ ...req.body, user: req.user.id });
+          const newBenefit = new this.Benefits(req.body);//{ ...req.body, user: req.user.id }
     
           await newBenefit.save();
     
@@ -58,7 +58,11 @@ class BenefitsController{
     
       deleteOne = async (req, res, next) => {
         try {
-          res.status(200).json({ message: 'DELETE ONE BENEFIT!!!' });
+            const { id } = req.params;
+
+            await this.Benefits.findByIdAndDelete(id);
+
+            res.status(200).json({ message: 'Benefit deleted' });
         } catch (error) {
           console.log(error);
         }

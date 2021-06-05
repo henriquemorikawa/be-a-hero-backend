@@ -7,7 +7,7 @@ class CentersController {
 
   getMany = async (req, res, next) => {
     try {
-      const centers = await this.Centers.find({ user: req.user.id });
+      const centers = await this.Centers.find();
 
       res.status(200).json(centers);
     } catch (error) {
@@ -34,7 +34,7 @@ class CentersController {
 
   createOne = async (req, res, next) => {
     try {
-      const newCenter = new this.Centers({ ...req.body, user: req.user.id });
+      const newCenter = new this.Centers(req.body);
 
       await newCenter.save();
 
@@ -58,7 +58,11 @@ class CentersController {
 
   deleteOne = async (req, res, next) => {
     try {
-      res.status(200).json({ message: 'DELETE ONE CENTER!!!' });
+      const { id } = req.params;
+
+      await this.Centers.findByIdAndDelete(id);
+
+      res.status(200).json({ message: 'Center deleted' });
     } catch (error) {
       console.log(error);
     }

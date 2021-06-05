@@ -1,4 +1,5 @@
 const Joi = require('joi');
+const passwordComplexity = require("joi-password-complexity");
 
 class AuthMiddleware {
   constructor() {
@@ -7,14 +8,17 @@ class AuthMiddleware {
       .keys({
         name: Joi.string().trim().min(3).max(100).required(),
         email: Joi.string().trim().email().required(),
-        password: Joi.string().trim().min(6).max(100).required(),
+        password: passwordComplexity(),
+        confirmPassword:Joi.string().required().valid(Joi.ref('password'))
+        // complexPasswrod: passwordComplexity().validate(password),
+        // password_confirmation: Joi.any().valid(Joi.ref('password')).required().options({ language: { any: { allowOnly: 'must match password' } } })
       });
 
     this.loginSchema = Joi.object()
       .options({ abortEarly: false })
       .keys({
         email: Joi.string().trim().email().required(),
-        password: Joi.string().trim().min(6).max(100).required(),
+        password: Joi.string().trim().min(6).max(15).required(),
       });
   }
 

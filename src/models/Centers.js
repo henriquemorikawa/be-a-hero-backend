@@ -6,7 +6,8 @@ const centerSchema = new mongoose.Schema({
   address: { type: String, required: true },
   email: { type: String, required: true },
   phoneNumber: { type: String, required: true },
-  bloodLevel: { type: String, required: true }
+  bloodLevel: { type: String, required: true },
+  image: { type: String, required: true}
   // user: { type: mongoose.Types.ObjectId, ref: 'User' },
 },
 {
